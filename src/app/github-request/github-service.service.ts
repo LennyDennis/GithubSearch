@@ -16,7 +16,7 @@ export class GithubServiceService {
 
 
   constructor(private http: HttpClient) {
-    this.user = new User(0, '', '', 0, 0, '');
+    this.user = new User(0, '','','', '', 0, 0, '');
     this.repos = new Repository();
   }
 
@@ -25,7 +25,9 @@ export class GithubServiceService {
 
     interface ApiResponse {
       id: number;
+      name:string;
       login: string;
+      bio:string;
       avatar_url: string;
       followers: number;
       following: number;
@@ -36,7 +38,9 @@ export class GithubServiceService {
       this.http.get<ApiResponse>(apiUrl).toPromise().then(
       response => {
         this.user.id = response.id;
+        this.user.name = response.name;
         this.user.username = response.login;
+        this.user.bio = response.bio;
         this.user.avatarUrl = response.avatar_url;
         this.user.followers = response.followers;
         this.user.following = response.following;
@@ -59,7 +63,9 @@ export class GithubServiceService {
 
     interface ApiResponse {
       id: number;
+      name:string;
       login: string;
+      bio:string;
       avatar_url: string;
       followers: number;
       following: number;
@@ -70,7 +76,9 @@ export class GithubServiceService {
       this.http.get<ApiResponse>(userApiUrl).toPromise().then(
       response => {
         this.user.id = response.id;
+        this.user.name = response.name;
         this.user.username = response.login;
+        this.user.bio = response.bio;
         this.user.avatarUrl = response.avatar_url;
         this.user.followers = response.followers;
         this.user.following = response.following;
